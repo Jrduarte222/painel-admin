@@ -21,12 +21,18 @@ async function carregarUsuarios() {
 }
 
 async function suspender(email) {
-  await fetch(`${API}/users/suspend?email=${email}`, { method: 'PUT' });
+  await fetch(`${API}/users/suspender`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  });
   carregarUsuarios();
 }
 
 async function excluir(email) {
-  await fetch(`${API}/users/delete?email=${email}`, { method: 'DELETE' });
+  await fetch(`${API}/users/${email}`, {
+    method: 'DELETE'
+  });
   carregarUsuarios();
 }
 
